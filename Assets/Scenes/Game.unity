@@ -106,6 +106,7 @@ Transform:
   - {fileID: 1068927128}
   - {fileID: 1330063528}
   - {fileID: 816437045}
+  - {fileID: 347779900}
   m_Father: {fileID: 0}
 --- !u!1 &107875743
 GameObject:
@@ -457,6 +458,57 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2044690551}
   m_GameObject: {fileID: 338976704}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &347779897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 347779900}
+  - 65: {fileID: 347779899}
+  - 114: {fileID: 347779898}
+  m_Layer: 8
+  m_Name: BurnBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &347779898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 347779897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84454db1df2ba4fff8ccb38d92f69b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &347779899
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 347779897}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &347779900
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 347779897}
+  m_LocalRotation: {x: 0, y: .25897789, z: 0, w: .965883315}
+  m_LocalPosition: {x: 0, y: .519504309, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 91054136}
 --- !u!1 &369430198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,7 +1655,7 @@ ParticleSystem:
     particleRadius: .00999999978
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 4294967272
     quality: 0
     voxelSize: .5
     collisionMessages: 1
@@ -2522,7 +2574,8 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: .965883315
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 7a9e6ddffd48c46eda03df38cc853bca, type: 2}
   m_RootGameObject: {fileID: 91054135}
   m_IsPrefabParent: 0
@@ -3545,7 +3598,7 @@ GameObject:
   - 33: {fileID: 1526827591}
   - 65: {fileID: 1526827590}
   - 23: {fileID: 1526827589}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3991,6 +4044,22 @@ Prefab:
       propertyPath: CollisionModule.plane0
       value: 
       objectReference: {fileID: 1526827592}
+    - target: {fileID: 19800000, guid: 05b9a9fa223f047de9ef1432cadabab1, type: 2}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 05b9a9fa223f047de9ef1432cadabab1, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 05b9a9fa223f047de9ef1432cadabab1, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 05b9a9fa223f047de9ef1432cadabab1, type: 2}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 4294967272
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05b9a9fa223f047de9ef1432cadabab1, type: 2}
   m_RootGameObject: {fileID: 748499990}
