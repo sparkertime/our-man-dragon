@@ -10,8 +10,8 @@ public class Flap : MonoBehaviour {
 	void Update () {
 		float wingPos = Time.time / flapDuration * 2f * Mathf.PI;
 		this.transform.localEulerAngles = new Vector3(
-			(1.0f - Mathf.Cos(wingPos)) * maxAngle,
+			this.transform.rotation.x,
 			this.transform.rotation.y, 
-			this.transform.rotation.z);
+			(1.0f - Mathf.Cos(wingPos)) * maxAngle);
 	}
 }
