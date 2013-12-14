@@ -14,6 +14,6 @@ public class Follow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		this.transform.position = target.transform.position + offset;
-		this.transform.LookAt(target.transform.position);
+
 	}
 }
