@@ -7,7 +7,6 @@ public class Flight : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		Debug.Log ("Flying!");
 		if(Input.GetAxis("Vertical") > 0.1f) {
 			this.transform.position += this.transform.forward * Time.deltaTime * forwardSpeed * Input.GetAxis("Vertical");
 		}
