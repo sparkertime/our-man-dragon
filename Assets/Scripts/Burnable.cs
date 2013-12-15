@@ -4,12 +4,11 @@ using System.Collections;
 public class Burnable : MonoBehaviour {
 	public GameObject fire;
 	public GameObject smoulder;
+	public int hitsUntilBurn = 3;
 	public float timeUntilSmoulder = 4f;
 
 	private int timesHit = 0;
 	private float timeBurning = 0f;
-
-	private static int timesUntilBurn = 3;
 
 	void Start() {
 		this.fire.particleSystem.enableEmission = false;
@@ -19,7 +18,7 @@ public class Burnable : MonoBehaviour {
 	void OnParticleCollision(GameObject collision) {
 		timesHit += 1;
 
-		if(timesHit >= timesUntilBurn) {
+		if(timesHit >= hitsUntilBurn) {
 			Burn();
 		}
 	}
