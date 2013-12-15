@@ -6491,6 +6491,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 527744489}
+  - 114: {fileID: 527744490}
   m_Layer: 0
   m_Name: Fort
   m_TagString: Untagged
@@ -6513,6 +6514,21 @@ Transform:
   - {fileID: 1412089421}
   - {fileID: 1593440378}
   m_Father: {fileID: 0}
+--- !u!114 &527744490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 527744488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0251db45b3ab4259b684555273ed348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInterval: 3
+  numberInTribe: 15
+  ork: {fileID: 100006, guid: d39fa291d6ab14ad5bac6414276767c2, type: 2}
+  spawnRadius: 3
 --- !u!1 &543872805
 GameObject:
   m_ObjectHideFlags: 0
