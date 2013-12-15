@@ -34,6 +34,7 @@ public class SpawnOrks : MonoBehaviour {
 				this.transform.position.x + newPositionOffset.x,
 				newOrk.transform.position.y,
 				newOrk.transform.position.z + newPositionOffset.y);
+
 			orks.Add(newOrk);
 		}
 	}
