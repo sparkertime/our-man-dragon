@@ -12,6 +12,7 @@ public class SpawnOrks : MonoBehaviour {
 	private List<GameObject> orks;
 	private float timeSinceLastSpawn = 0f;
 	public bool canSpawn = true;
+	public bool hasAttacked = false;
 
 	// Use this for initialization
 	void Start() {
@@ -20,7 +21,7 @@ public class SpawnOrks : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		if(orks.Count >= numberInTribe) {
+		if(orks.Count >= numberInTribe && !hasAttacked) {
 			LaunchAttack();
 		}
 		else {
@@ -29,6 +30,7 @@ public class SpawnOrks : MonoBehaviour {
 	}
 
 	void LaunchAttack() {
+		hasAttacked = true;
 		orks.ForEach((ork) => ork.SendMessage("StartAttacking"));
 	}
 
@@ -54,7 +56,9 @@ public class SpawnOrks : MonoBehaviour {
 	}
 
 	void StopActivity() {
-		canSpawn = false;
-		LaunchAttack();
+		if(canSpawn) {
+			canSpawn = false;
+			LaunchAttack();
+		}
 	}
 }

@@ -30,7 +30,7 @@ public class SpawnForts : MonoBehaviour {
 
 	void SpawnFort() {
 		timeSinceLastSpawn = 0f;
-		var spawnLocation = Random.insideUnitCircle * (maxRange - minRange);
+		var spawnLocation = RandomPosition(minRange, maxRange);
 
 		var newFort = (GameObject)GameObject.Instantiate(fort);
 		newFort.transform.position = new Vector3(
@@ -38,6 +38,16 @@ public class SpawnForts : MonoBehaviour {
 			newFort.transform.position.y,
 			spawnLocation.y + minRange
 			);
+	}
+
+	//A bit of a cheat since it subtracts a square from a circle, not a circle
+	Vector2 RandomPosition(float minRadius, float maxRadius) {
+		var relativePosition = Random.insideUnitCircle * (maxRadius - minRadius);
+		return new Vector2(
+			(relativePosition.x < 0f ? relativePosition.x - minRadius : relativePosition.x + minRadius),
+			(relativePosition.y < 0f ? relativePosition.y - minRadius : relativePosition.y + minRadius)
+			);
+
 	}
 
 	void ReduceSpawnRate() {

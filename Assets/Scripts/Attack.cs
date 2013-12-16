@@ -4,17 +4,20 @@ using System.Collections;
 public class Attack : MonoBehaviour {
 
 	private Villager target;
+	private bool canAttack = true;
 	private bool isAttacking = false;
 
 	public float movementSpeed = 4f;
 	public float killRadius = 0.3f;
 
 	void StartAttacking() {
-		isAttacking = true;
+		if(canAttack) {
+			isAttacking = true;
+		}
 	}
 
 	void Update() {
-		if(isAttacking) {
+		if(canAttack && isAttacking) {
 			SelectTarget();
 			MoveTowardsTarget();
 			AttemptKill();
@@ -30,7 +33,7 @@ public class Attack : MonoBehaviour {
 	}
 
 	void MoveTowardsTarget() {
-		if(!isAttacking || target == null || !target.IsLiving()) {
+		if(target == null || !target.IsLiving()) {
 			return;
 		}
 
@@ -39,7 +42,7 @@ public class Attack : MonoBehaviour {
 	}
 
 	void AttemptKill() {
-		if(!isAttacking || target == null || !target.IsLiving()) {
+		if(target == null || !target.IsLiving()) {
 			return;
 		}
 
@@ -50,6 +53,6 @@ public class Attack : MonoBehaviour {
 	}
 
 	public void StopActivity() {
-		isAttacking = false;
+		canAttack = false;
 	}
 }
