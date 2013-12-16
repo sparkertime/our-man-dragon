@@ -1536,7 +1536,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -1631,12 +1631,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 664196887}
-  - {fileID: 1619319807}
-  - {fileID: 800346895}
-  - {fileID: 1203087213}
-  - {fileID: 1857412979}
   - {fileID: 69613778}
+  - {fileID: 664196887}
+  - {fileID: 800346895}
+  - {fileID: 1857412979}
+  - {fileID: 1203087213}
+  - {fileID: 1619319807}
   m_Father: {fileID: 0}
 --- !u!1 &462217895
 GameObject:
@@ -3913,7 +3913,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -5172,7 +5172,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -6719,7 +6719,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -8163,7 +8163,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -9278,7 +9278,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -10665,7 +10665,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -11992,7 +11992,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -13980,7 +13980,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -15153,7 +15153,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -16524,7 +16524,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
@@ -17639,7 +17639,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     type: 1
     plane0: {fileID: 1526827592}
     plane1: {fileID: 0}
