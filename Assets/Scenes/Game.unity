@@ -17751,9 +17751,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2d6c325282f48409940d9ee3add4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialFortSpawnRate: 20
-  minimumSpawnRate: 5
-  spawnRateSpeedupRatio: 1.29999995
+  initialFortSpawnRate: 10
+  minimumSpawnRate: 1
+  spawnRateSpeedupRatio: .670000017
   maxRange: 40
   minRange: 5
   fort: {fileID: 100006, guid: 4cc1fc5b4ccbf4db789003620dea5848, type: 2}
