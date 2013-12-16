@@ -8,12 +8,15 @@ public class Follow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		offset = this.transform.position - target.transform.position;
+		offset = target.transform.InverseTransformPoint(this.transform.position);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.position = target.transform.position + offset;
-
+		this.transform.position = target.transform.TransformPoint(offset);
+		this.transform.eulerAngles = new Vector3(
+			this.transform.eulerAngles.x,
+			target.transform.eulerAngles.y,
+			this.transform.eulerAngles.z);
 	}
 }
