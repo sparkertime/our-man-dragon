@@ -60,6 +60,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400006}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Ork
   m_TagString: Untagged
@@ -725,8 +726,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fire: {fileID: 100000}
   smoulder: {fileID: 100022}
-  hitsUntilBurn: 3
   timeUntilSmoulder: 4
+  timeFromSmoulderTillDeath: 4
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3566f02bc5b3248dfbd3bb596d890f41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 2
+  killRadius: .300000012
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

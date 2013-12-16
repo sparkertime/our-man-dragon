@@ -59,6 +59,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400006}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Fort
   m_TagString: Untagged
@@ -227,8 +228,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fire: {fileID: 100002}
   smoulder: {fileID: 100000}
-  hitsUntilBurn: 6
   timeUntilSmoulder: 6
+  timeFromSmoulderTillDeath: 4
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0251db45b3ab4259b684555273ed348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnInterval: 3
+  numberInTribe: 15
+  ork: {fileID: 100006, guid: d39fa291d6ab14ad5bac6414276767c2, type: 2}
+  spawnRadius: 3
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

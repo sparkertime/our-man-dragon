@@ -26,6 +26,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400002}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Villager
   m_TagString: Untagged
@@ -278,8 +279,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fire: {fileID: 100008}
   smoulder: {fileID: 100006}
-  hitsUntilBurn: 1
   timeUntilSmoulder: 4
+  timeFromSmoulderTillDeath: 4
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe89b102a841c41619daa802a956284e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
