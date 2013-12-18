@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SpawnVillagers : MonoBehaviour {
+public class Hut : MonoBehaviour {
 	
 	public float spawnInterval = 3f;
 	public int numberInTribe = 5;
@@ -17,10 +17,14 @@ public class SpawnVillagers : MonoBehaviour {
 	void Start() {
 		villagers = new List<GameObject>();
 	}
+
+	public bool HasCapacity() {
+		return villagers.Count < numberInTribe;
+	}
 	
 	// Update is called once per frame
 	void Update() {
-		if(villagers.Count < numberInTribe) {
+		if(HasCapacity()) {
 			SpawnVillager();
 		}
 	}

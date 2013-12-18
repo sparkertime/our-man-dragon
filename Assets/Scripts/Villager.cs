@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Villager : MonoBehaviour {
 
@@ -9,6 +10,10 @@ public class Villager : MonoBehaviour {
 
 	public static Villager RandomVillager() {
 		return allVillagers[randomNumber.Next(0, allVillagers.Count)];
+	}
+
+	public static IEnumerable<Villager> IdleVillagers(int count = 1) {
+		return allVillagers.OrderBy((v) => randomNumber.Next()).Take(count);
 	}
 
 	private bool alive = true;

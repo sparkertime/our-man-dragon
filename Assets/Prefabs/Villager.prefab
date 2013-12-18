@@ -279,8 +279,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fire: {fileID: 100008}
   smoulder: {fileID: 100006}
+  destroyOnBurn: {fileID: 100002}
+  objectsToScorch:
+  - {fileID: 100004}
+  scorchColor: {fileID: 2100000, guid: f489fda4b0b76459186a67a3dd8cd7fd, type: 2}
   timeUntilSmoulder: 4
-  timeFromSmoulderTillDeath: 4
+  timeUntilDeath: 8
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Linq;
 
 public class Burnable : MonoBehaviour {
 	public GameObject fire;
 	public GameObject smoulder;
-	public float timeUntilSmoulder = 2f;
-	public float timeFromSmoulderTillDeath = 2f;
+	public GameObject destroyOnBurn;
+	public GameObject[] objectsToScorch;
+	public Material scorchColor;
+	public static float timeUntilSmoulder = 4f;
+	public static float timeUntilDeath = 8f;
 
 	private float timeBurning = 0f;
 
@@ -32,8 +36,14 @@ public class Burnable : MonoBehaviour {
 		this.fire.particleSystem.enableEmission = (timeBurning < timeUntilSmoulder);
 		this.smoulder.particleSystem.enableEmission = (timeBurning > timeUntilSmoulder);
 
-		if(timeBurning > (timeUntilSmoulder + timeFromSmoulderTillDeath)) {
-			Destroy(this.gameObject);
+		if(timeBurning > timeUntilDeath) {
+			Destroy(destroyOnBurn);
+		} else if(timeBurning > timeUntilSmoulder) {
+			this.fire.particleSystem.enableEmission = false;
+			this.smoulder.particleSystem.enableEmission = true;
+			foreach(var obj in objectsToScorch) {
+				obj.renderer.materials = Enumerable.Repeat<Material>(scorchColor, obj.renderer.materials.Count()).ToArray();
+			}
 		}
 	}
 
