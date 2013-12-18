@@ -15,6 +15,7 @@ public class SpawnForts : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		timeSinceLastSpawn = Random.value;
 		spawnRate = initialFortSpawnRate;
 		spawnLocation = new RandomSpawnLocation(this.transform, minRange, maxRange);
 		SpawnFort();

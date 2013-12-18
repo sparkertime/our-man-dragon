@@ -16,6 +16,7 @@ public class SpawnOrks : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
+		timeSinceLastSpawn = Random.value;
 		orks = new List<GameObject>();
 	}
 	

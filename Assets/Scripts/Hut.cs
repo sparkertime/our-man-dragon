@@ -7,15 +7,19 @@ public class Hut : MonoBehaviour {
 	public float spawnInterval = 3f;
 	public int numberInTribe = 5;
 	public GameObject villager;
-	public float spawnRadius = 10f;
+	public float minSpawnRange = 0.5f;
+	public float maxSpawnRange = 1.5f;
 	
 	private List<GameObject> villagers;
+	private RandomSpawnLocation spawnLocation;
 	private float timeSinceLastSpawn = 0f;
 	private bool canSpawn = true;
 	
 	// Use this for initialization
 	void Start() {
+		timeSinceLastSpawn = Random.value;
 		villagers = new List<GameObject>();
+		spawnLocation = new RandomSpawnLocation(this.transform, minSpawnRange, maxSpawnRange);
 	}
 
 	public bool HasCapacity() {
@@ -39,12 +43,13 @@ public class Hut : MonoBehaviour {
 			timeSinceLastSpawn = 0f;
 			
 			var newVillager = (GameObject)GameObject.Instantiate(villager);
-			var newPositionOffset = (Random.insideUnitCircle * spawnRadius);
+			var location = spawnLocation.Next();
 			
 			newVillager.transform.position = new Vector3(
-				this.transform.position.x + newPositionOffset.x,
+				location.x,
 				newVillager.transform.position.y,
-				this.transform.position.z + newPositionOffset.y);
+				location.z
+				);
 			
 			villagers.Add(newVillager);
 		}

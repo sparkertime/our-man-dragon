@@ -41,10 +41,20 @@ public class Burnable : MonoBehaviour {
 		} else if(timeBurning > timeUntilSmoulder) {
 			this.fire.particleSystem.enableEmission = false;
 			this.smoulder.particleSystem.enableEmission = true;
-			foreach(var obj in objectsToScorch) {
-				obj.renderer.materials = Enumerable.Repeat<Material>(scorchColor, obj.renderer.materials.Count()).ToArray();
-			}
+			MakeScorched();
 		}
+	}
+
+	private bool _isScorched = false;
+	void MakeScorched() {
+		if(_isScorched) {
+			return;
+		}
+
+		foreach(var obj in objectsToScorch) {
+			obj.renderer.materials = Enumerable.Repeat<Material>(scorchColor, obj.renderer.materials.Count()).ToArray();
+		}
+		_isScorched = true;
 	}
 
 	bool IsBurning() {

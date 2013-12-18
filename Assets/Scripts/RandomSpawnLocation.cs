@@ -13,12 +13,13 @@ public class RandomSpawnLocation {
 
 	public Vector3 Next() {
 		var relativePosition = Random.insideUnitCircle * (maxRange - minRange); 
+		relativePosition = relativePosition.normalized * (relativePosition.magnitude + minRange);
 
 		var newPoint = this.center.TransformPoint(
 			new Vector3(
-				(relativePosition.x < 0f ? relativePosition.x - minRange : relativePosition.x + minRange),
+				relativePosition.x,
 				0,
-				(relativePosition.y < 0f ? relativePosition.y - minRange : relativePosition.y + minRange)
+				relativePosition.y
 				)
 			);
 
