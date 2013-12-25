@@ -230,12 +230,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0251db45b3ab4259b684555273ed348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 2
+  spawnRate: 2
   numberInTribe: 10
   ork: {fileID: 100006, guid: d39fa291d6ab14ad5bac6414276767c2, type: 2}
-  spawnRadius: 3
-  canSpawn: 1
-  hasAttacked: 0
+  maxRange: 3
+  minRange: 1
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

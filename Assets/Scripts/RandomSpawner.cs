@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class RandomSpawnLocation {
+public class RandomSpawner {
 	private Transform center;
 	private float minRange;
 	private float maxRange;
 
-	public RandomSpawnLocation(Transform center, float minRange, float maxRange) {
+	public RandomSpawner(Transform center, float minRange, float maxRange) {
 		this.center = center;
 		this.minRange = minRange;
 		this.maxRange = maxRange;
@@ -23,9 +23,19 @@ public class RandomSpawnLocation {
 				)
 			);
 
-		
-		Debug.Log(string.Format("Point: ({0},{1}) (min: {2}, max: {3}, orig: ({4}, {5}))", newPoint.x, newPoint.z, minRange, maxRange, relativePosition.x, relativePosition.y));
-
 		return newPoint;
+	}
+
+	public GameObject Spawn(GameObject original) {
+		var location = this.Next();
+		
+		var newObject = (GameObject)GameObject.Instantiate(original);
+		newObject.transform.position = new Vector3(
+			location.x,
+			newObject.transform.position.y,
+			location.z
+			);
+
+		return newObject;
 	}
 }

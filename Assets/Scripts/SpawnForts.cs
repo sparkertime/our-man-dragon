@@ -11,36 +11,31 @@ public class SpawnForts : MonoBehaviour {
 
 	private float timeSinceLastSpawn = 0f;
 	private float spawnRate;
-	private RandomSpawnLocation spawnLocation;
+	private RandomSpawner spawner;
 
 	// Use this for initialization
 	void Start () {
 		timeSinceLastSpawn = Random.value;
 		spawnRate = initialFortSpawnRate;
-		spawnLocation = new RandomSpawnLocation(this.transform, minRange, maxRange);
-		SpawnFort();
+		spawner = new RandomSpawner(this.transform, minRange, maxRange);
+		spawner.Spawn(fort);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		timeSinceLastSpawn += Time.deltaTime;
-
-		if(timeSinceLastSpawn > spawnRate) {
-			SpawnFort();
-			ReduceSpawnRate();
-		}
+		AttemptSpawn();
 	}
 
-	void SpawnFort() {
-		timeSinceLastSpawn = 0f;
-		var location = spawnLocation.Next();
+	void AttemptSpawn() {
+		timeSinceLastSpawn += Time.deltaTime;
 
-		var newFort = (GameObject)GameObject.Instantiate(fort);
-		newFort.transform.position = new Vector3(
-			location.x,
-			newFort.transform.position.y,
-			location.z
-			);
+		if(timeSinceLastSpawn < spawnRate) {
+			return;
+		}
+
+		spawner.Spawn(fort);
+		timeSinceLastSpawn = 0;
+		ReduceSpawnRate();
 	}
 
 	void ReduceSpawnRate() {
