@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class SpawnForts : MonoBehaviour {
-	public float initialFortSpawnRate = 20f;
-	public float minimumSpawnRate = 5f;
+	public float initialFortSpawnRate = 30f;
+	public float minimumSpawnRate = 4f;
 	public float spawnRateSpeedupRatio = 0.8f;
-	public float maxRange = 40f;
-	public float minRange = 5f;
+	public float maxRange = 45f;
+	public float minRange = 20f;
 	public GameObject fort;
 
 	private float timeSinceLastSpawn = 0f;

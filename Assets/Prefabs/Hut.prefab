@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deea8a79388fb460b94c7eece14b9a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 3
+  spawnRate: 2
   numberInTribe: 5
   villager: {fileID: 100002, guid: e786e6dbd0c1d4c17a1bb751ba1a3bec, type: 2}
   minRange: 1

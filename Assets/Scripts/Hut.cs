@@ -1,29 +1,38 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class Hut : MonoBehaviour {
-	
+	private static List<Hut> _all = new List<Hut>();
+
+	public static IEnumerable<Hut> AllHuts() {
+		return _all;
+	}
+
 	public float spawnRate = 3f;
 	public int numberInTribe = 5;
 	public GameObject villager;
 	public float minRange = 1f;
 	public float maxRange = 2f;
+
+	public event Action OnDeath;
 	
 	private List<GameObject> villagers;
 	private RandomSpawner spawner;
 	private float timeSinceLastSpawn = 0f;
 	private bool canSpawn = true;
-	
+
 	// Use this for initialization
 	void Start() {
-		timeSinceLastSpawn = Random.value;
+		_all.Add(this);
+		timeSinceLastSpawn = UnityEngine.Random.value;
 		villagers = new List<GameObject>();
 		spawner = new RandomSpawner(this.transform, minRange, maxRange);
 	}
 
-	public bool HasCapacity() {
-		return villagers.Count < numberInTribe;
+	public bool AtCapacity() {
+		return villagers.Count >= numberInTribe;
 	}
 	
 	// Update is called once per frame
@@ -34,7 +43,7 @@ public class Hut : MonoBehaviour {
 	void AttemptSpawn() {
 		timeSinceLastSpawn += Time.deltaTime;
 
-		if(!canSpawn || !HasCapacity() || timeSinceLastSpawn < spawnRate) {
+		if(!canSpawn || AtCapacity() || timeSinceLastSpawn < spawnRate) {
 			return;
 		}
 
@@ -45,5 +54,8 @@ public class Hut : MonoBehaviour {
 
 	void StopActivity() {
 		canSpawn = false;
+		_all.Remove(this);
+
+		if(OnDeath != null) OnDeath();
 	}
 }
