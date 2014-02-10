@@ -64,7 +64,6 @@ public class Villager : MonoBehaviour {
 		                               nextLocation.y);
 
 		state = VillagerState.Moving;
-		Debug.Log(String.Format("Villager moving to ({0}, {1})", nextLocation.x, nextLocation.y));
 	}
 	
 	// Update is called once per frame

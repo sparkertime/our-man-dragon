@@ -6,12 +6,14 @@ using System;
 
 public class HutBuilding : MonoBehaviour {
 	public GameObject hut;
+	public GameObject underConstructionHut;
+	public int startingAlpha;
+	public int finalAlpha;
 	public float maxRange = 10f;
 	public float minRange = 1.0f;
 	public float buildTimeForHut = 15f;
 	public float minimumHutSpace = 2f;
 	public int villagersToBuild = 3;
-
 
 	public enum BuildState {
 		SpawningVillagers = 0,
@@ -20,11 +22,12 @@ public class HutBuilding : MonoBehaviour {
 		BuildingHut
 	}
 	
-	public BuildState currentState = BuildState.SpawningVillagers;
+	private BuildState currentState = BuildState.SpawningVillagers;
 	private Dictionary<BuildState, Action> stateActions;
 	private RandomSpawner spawner;
-	public float hutBuildingProgress = 0f;
+	private float hutBuildingProgress = 0f;
 	private Vector2 nextLocation;
+	private GameObject spawnedUnderConstructionHut;
 
 	// Use this for initialization
 	void Start() {
@@ -37,7 +40,7 @@ public class HutBuilding : MonoBehaviour {
 			{BuildState.BuildingHut, BuildHut}
 		};
 
-		SpawnHut(0,0);
+		SpawnHut(new Vector2(0,0));
 	}
 
 	void FixedUpdate() {
@@ -90,15 +93,34 @@ public class HutBuilding : MonoBehaviour {
 	void BuildHut() {
 		hutBuildingProgress += Time.fixedDeltaTime;
 		if(hutBuildingProgress >= buildTimeForHut) {
-			Debug.Log(String.Format("Hut Built at {0}, {1}!", nextLocation.x, nextLocation.y));
-			SpawnHut(nextLocation.x, nextLocation.y);
+			SpawnHut(nextLocation);
 			builders.Clear();
 			currentState = BuildState.SpawningVillagers;
+		} else {
+			UpdateConstructionProgress();
 		}
 	}
 
-	void SpawnHut(float x, float y) {
-		var newHut = spawner.Spawn(hut, new Vector2(x, y)).GetComponent<Hut>();
+	void UpdateConstructionProgress() {
+		if(spawnedUnderConstructionHut == null) {
+			spawnedUnderConstructionHut = spawner.Spawn(underConstructionHut, nextLocation);
+		}
+		foreach(var renderer in spawnedUnderConstructionHut.GetComponentsInChildren<Renderer>()) {
+			renderer.material.color = new Color(
+				renderer.material.color.r,
+				renderer.material.color.g,
+				renderer.material.color.b,
+				Mathf.Lerp(0.1f, 0.8f, hutBuildingProgress / buildTimeForHut)
+			);
+		}
+	}
+
+	void SpawnHut(Vector2 location) {
+		if(spawnedUnderConstructionHut != null) {
+			Destroy(spawnedUnderConstructionHut);
+			spawnedUnderConstructionHut = null;
+		}
+		var newHut = spawner.Spawn(hut, location).GetComponent<Hut>();
 		newHut.OnDeath += () => currentState = BuildState.SpawningVillagers;
 	}
 }
