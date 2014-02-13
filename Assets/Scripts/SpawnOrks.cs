@@ -44,7 +44,7 @@ public class SpawnOrks : MonoBehaviour {
 	void AttemptSpawn() {
 		timeSinceLastSpawn += Time.deltaTime;
 		
-		if(timeSinceLastSpawn < spawnRate) {
+		if(timeSinceLastSpawn < spawnRate || !canSpawn) {
 			return;
 		}
 		

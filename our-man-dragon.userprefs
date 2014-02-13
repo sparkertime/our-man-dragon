@@ -1,14 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HutBuilding.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MultiScreenManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Villager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HutBuilding.cs" Line="113" Column="19" />
-      <File FileName="Assets/Scripts/Villager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/RandomSpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Hut.cs" Line="29" Column="36" />
-      <File FileName="Assets/Scripts/Burnable.cs" Line="24" Column="28" />
-      <File FileName="Assets/Scripts/SpawnForts.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/MultiScreenManager.cs" Line="36" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
