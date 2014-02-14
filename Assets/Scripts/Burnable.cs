@@ -37,6 +37,7 @@ public class Burnable : MonoBehaviour {
 		this.smoulder.particleSystem.enableEmission = (timeBurning > timeUntilSmoulder);
 
 		if(timeBurning > timeUntilDeath) {
+			destroyOnBurn.SendMessage("Kill", SendMessageOptions.DontRequireReceiver);
 			Destroy(destroyOnBurn);
 		} else if(timeBurning > timeUntilSmoulder) {
 			this.fire.particleSystem.enableEmission = false;

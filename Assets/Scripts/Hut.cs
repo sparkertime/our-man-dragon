@@ -10,6 +10,12 @@ public class Hut : MonoBehaviour {
 		return _all;
 	}
 
+	public static int TotalVillagerCapacity() {
+		if(_all.Count < 1) return 0;
+
+		return _all.Count * _all[0].numberInTribe;
+	}
+
 	public float spawnRate = 3f;
 	public int numberInTribe = 5;
 	public GameObject villager;

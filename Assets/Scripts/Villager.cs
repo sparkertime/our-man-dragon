@@ -52,6 +52,7 @@ public class Villager : MonoBehaviour {
 		state = VillagerState.Dead;
 
 		if(OnDeath != null) OnDeath(this);
+		_all.Remove(this);
 
 		Destroy(this.gameObject);
 	}
