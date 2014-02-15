@@ -1,10 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Burnable.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/HutBuilding.cs">
     <Files>
-      <File FileName="Assets/Scripts/Villager.cs" Line="54" Column="37" />
-      <File FileName="Assets/Scripts/Burnable.cs" Line="41" Column="27" />
-      <File FileName="Assets/Scripts/SpawnOrks.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameGUI.cs" Line="25" Column="40" />
+      <File FileName="Assets/Scripts/HutBuilding.cs" Line="29" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -22,6 +22,7 @@ public class GameGUI : MonoBehaviour {
 		);
 
 		GUI.Label(new Rect(0,0,100,30), String.Format("Villagers: {0} / {1}", Villager.AllVillagers().Count(), Hut.TotalVillagerCapacity()));
+		GUI.Label(new Rect(width - 150, 0, 150, 30), String.Format("Currently {0}", HutBuilding.CurrentStateDescriptor()));
 
 		GUILayout.EndArea();
 	}

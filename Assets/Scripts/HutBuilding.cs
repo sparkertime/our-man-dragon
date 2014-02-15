@@ -21,7 +21,15 @@ public class HutBuilding : MonoBehaviour {
 		AssemblingBuilders,
 		BuildingHut
 	}
-	
+
+	public static Dictionary<BuildState, String> buildStateDescriptors = new Dictionary<BuildState, string> {
+		{BuildState.SpawningVillagers, "making babies"},
+		{BuildState.LookingForLocation, "building a hut"},
+		{BuildState.AssemblingBuilders, "building a hut"},
+		{BuildState.BuildingHut, "building a hut"}
+	};
+
+	private static HutBuilding theInstance;
 	private BuildState currentState = BuildState.SpawningVillagers;
 	private Dictionary<BuildState, Action> stateActions;
 	private RandomSpawner spawner;
@@ -29,8 +37,15 @@ public class HutBuilding : MonoBehaviour {
 	private Vector2 nextLocation;
 	private GameObject spawnedUnderConstructionHut;
 
+	public static string CurrentStateDescriptor() {
+		if(theInstance == null) return String.Empty;
+
+		return buildStateDescriptors[theInstance.currentState];
+	}
+
 	// Use this for initialization
 	void Start() {
+		theInstance = this;
 		spawner = new RandomSpawner(this.transform, minRange, maxRange);
 
 		stateActions = new Dictionary<BuildState, Action>{
@@ -81,6 +96,11 @@ public class HutBuilding : MonoBehaviour {
 	void RemoveDeadBuilder(Villager deadVillager) {
 		builders.Remove(deadVillager);
 		currentState = BuildState.AssemblingBuilders;
+		hutBuildingProgress = 0f;
+
+		if(spawnedUnderConstructionHut) {
+			Destroy(spawnedUnderConstructionHut);
+		}
 	}
 
 	void CheckForBuildingStart(Villager _) {

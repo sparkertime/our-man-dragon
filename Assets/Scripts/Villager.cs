@@ -26,6 +26,8 @@ public class Villager : MonoBehaviour {
 	private Vector3 destination;
 
 	public static Villager RandomVillager() {
+		if(_all.Count < 1) return null;
+
 		return _all[randomNumber.Next(0, _all.Count)];
 	}
 	
@@ -49,10 +51,7 @@ public class Villager : MonoBehaviour {
 	}
 
 	public void Kill() {
-		state = VillagerState.Dead;
-
-		if(OnDeath != null) OnDeath(this);
-		_all.Remove(this);
+		StopActivity();
 
 		Destroy(this.gameObject);
 	}
@@ -85,5 +84,12 @@ public class Villager : MonoBehaviour {
 
 		this.transform.LookAt(destination);
 		this.transform.position += this.transform.forward * Time.deltaTime * movementSpeed;
+	}
+
+	void StopActivity() {
+		state = VillagerState.Dead;
+		
+		if(OnDeath != null) OnDeath(this);
+		_all.Remove(this);
 	}
 }
