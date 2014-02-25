@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Attack : MonoBehaviour {
+public class Ork : MonoBehaviour {
+
+	private static List<Ork> _all = new List<Ork>();
+	public static IEnumerable<Ork> AllOrks() {
+		return _all;
+	}
 
 	private Villager target;
 	private bool canAttack = true;
@@ -9,6 +15,10 @@ public class Attack : MonoBehaviour {
 
 	public float movementSpeed = 4f;
 	public float killRadius = 0.3f;
+
+	void Start() {
+		_all.Add(this);
+	}
 
 	void StartAttacking() {
 		if(canAttack) {
@@ -54,5 +64,6 @@ public class Attack : MonoBehaviour {
 
 	public void StopActivity() {
 		canAttack = false;
+		_all.Remove(this);
 	}
 }

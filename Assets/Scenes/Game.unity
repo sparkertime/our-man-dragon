@@ -2340,8 +2340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialFortSpawnRate: 30
-  minimumSpawnRate: 4
-  spawnRateSpeedupRatio: .800000012
+  minimumSpawnRate: 10
+  spawnRateSpeedupRatio: .899999976
   maxRange: 45
   minRange: 20
   fort: {fileID: 100008, guid: 4cc1fc5b4ccbf4db789003620dea5848, type: 2}

@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class GameGUI : MonoBehaviour {
-	//flash red when dying
-	//orks count
 	//forts count & timer
+
 	//game time
 
 	public GUISkin alertSkin;
@@ -37,12 +36,22 @@ public class GameGUI : MonoBehaviour {
 		);
 
 		GUI.Label(
-			new Rect(0,0,100,25),
+			new Rect(5,5,100,25),
 			String.Format("Villagers: {0} / {1}", villagerCount, Hut.TotalVillagerCapacity()),
 			CurrentCountSkin()
 		);
 
-		GUI.Label(new Rect(width - 150, 0, 150, 25), String.Format("Currently {0}", HutBuilding.CurrentStateDescriptor()));
+		GUI.Label(new Rect(width - 150, 5, 150, 25), String.Format("Currently {0}", HutBuilding.CurrentStateDescriptor()));
+
+		GUI.Label(
+			new Rect(5,30,100,25),
+			String.Format("Orcs: {0} / {1}", Ork.AllOrks().Count(), Fort.TotalOrkCapacity())
+		);
+
+		GUI.Label(
+			new Rect(width - 150, 30, 150, 25),
+			String.Format("Time until next fort: {0}s", SpawnForts.TimeUntilNextSpawn())
+		);
 
 		GUILayout.EndArea();
 	}

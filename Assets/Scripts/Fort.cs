@@ -2,7 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SpawnOrks : MonoBehaviour {
+public class Fort : MonoBehaviour {
+
+	private static List<Fort> _all = new List<Fort>();
+
+	public static int TotalOrkCapacity() {
+		if(_all.Count < 1) return 0;
+		
+		return _all.Count * _all[0].numberInTribe;
+	}
+
 	public float spawnRate = 2f;
 	public int numberInTribe = 10;
 	public GameObject ork;
@@ -17,6 +26,7 @@ public class SpawnOrks : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
+		_all.Add(this);
 		timeSinceLastSpawn = Random.value;
 		orks = new List<GameObject>();
 		spawner = new RandomSpawner(this.transform, minRange, maxRange);
@@ -57,5 +67,7 @@ public class SpawnOrks : MonoBehaviour {
 			canSpawn = false;
 			AttemptAttack();
 		}
+
+		_all.Remove(this);
 	}
 }
