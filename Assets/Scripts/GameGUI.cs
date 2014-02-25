@@ -5,15 +5,30 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class GameGUI : MonoBehaviour {
-	//what's important to know
-	//villagers count/max & state
 	//flash red when dying
 	//orks count
 	//forts count & timer
 	//game time
 
+	public GUISkin alertSkin;
+	public float alertInterval = 0.5f;
+	public float alertTime = 3.0f;
+
 	private float width = 300f;
 	private float height = 60f;
+	private bool isAlerting;
+	private float currentAlertTime;
+	private int villagerCount;
+
+	void Awake() {
+		villagerCount = 0;
+		currentAlertTime = 0f;
+		isAlerting = false;
+	}
+
+	void Update() {
+		UpdateVillagerCount();
+	}
 
 	void OnGUI() {
 		GUILayout.BeginArea(
@@ -21,9 +36,41 @@ public class GameGUI : MonoBehaviour {
 			GUI.skin.box
 		);
 
-		GUI.Label(new Rect(0,0,100,30), String.Format("Villagers: {0} / {1}", Villager.AllVillagers().Count(), Hut.TotalVillagerCapacity()));
-		GUI.Label(new Rect(width - 150, 0, 150, 30), String.Format("Currently {0}", HutBuilding.CurrentStateDescriptor()));
+		GUI.Label(
+			new Rect(0,0,100,25),
+			String.Format("Villagers: {0} / {1}", villagerCount, Hut.TotalVillagerCapacity()),
+			CurrentCountSkin()
+		);
+
+		GUI.Label(new Rect(width - 150, 0, 150, 25), String.Format("Currently {0}", HutBuilding.CurrentStateDescriptor()));
 
 		GUILayout.EndArea();
+	}
+
+	private void UpdateVillagerCount() {
+		var newCount = Villager.AllVillagers().Count();
+
+		if(newCount < villagerCount) {
+			isAlerting = true;
+			currentAlertTime = 0.0f;
+		}
+
+		villagerCount = newCount;
+
+		if(isAlerting) {
+			currentAlertTime += Time.deltaTime;
+		}
+
+		if(currentAlertTime >= alertTime) {
+			isAlerting = false;
+			currentAlertTime = 0.0f;
+		}
+
+	}
+
+	public GUIStyle CurrentCountSkin() {
+		if(!isAlerting) return GUI.skin.label;
+
+		return ((int)(currentAlertTime / alertInterval)) % 2 == 0 ? alertSkin.label : GUI.skin.label;
 	}
 }
