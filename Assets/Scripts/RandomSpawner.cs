@@ -41,6 +41,10 @@ public class RandomSpawner {
 			newObject.transform.position.y,
 			location.y
 			);
+
+		var randomRotation = Random.Range(0f, 360f);
+
+		newObject.transform.RotateAround(newObject.transform.position, newObject.transform.up, randomRotation);
 		
 		return newObject;
 	}
