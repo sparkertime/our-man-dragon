@@ -5,16 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class GameGUI : MonoBehaviour {
-	//forts count & timer
-
-	//game time
-
 	public GUISkin alertSkin;
 	public float alertInterval = 0.5f;
 	public float alertTime = 3.0f;
 
 	private float width = 300f;
-	private float height = 60f;
+	private float height = 70f;
 	private bool isAlerting;
 	private float currentAlertTime;
 	private int villagerCount;
@@ -36,21 +32,26 @@ public class GameGUI : MonoBehaviour {
 		);
 
 		GUI.Label(
-			new Rect(5,5,100,25),
+			new Rect(5,3,100,25),
 			String.Format("Villagers: {0} / {1}", villagerCount, Hut.TotalVillagerCapacity()),
 			CurrentCountSkin()
 		);
 
-		GUI.Label(new Rect(width - 150, 5, 150, 25), String.Format("Currently {0}", HutBuilding.CurrentStateDescriptor()));
+		GUI.Label(new Rect(width - 150, 3, 150, 25), String.Format("Currently {0}", HutBuilding.CurrentStateDescriptor()));
 
 		GUI.Label(
-			new Rect(5,30,100,25),
+			new Rect(5,28,100,25),
 			String.Format("Orcs: {0} / {1}", Ork.AllOrks().Count(), Fort.TotalOrkCapacity())
 		);
 
 		GUI.Label(
-			new Rect(width - 150, 30, 150, 25),
+			new Rect(width - 150, 28, 150, 25),
 			String.Format("Time until next fort: {0}s", SpawnForts.TimeUntilNextSpawn())
+		);
+
+		GUI.Label(
+			new Rect((width / 2f) - 35, 50, 80, 25),
+			String.Format("Time: {0}", CurrentPlaytime())
 		);
 
 		GUILayout.EndArea();
@@ -75,6 +76,15 @@ public class GameGUI : MonoBehaviour {
 			currentAlertTime = 0.0f;
 		}
 
+	}
+
+	public string CurrentPlaytime() {
+		var totalSeconds = (int)Time.timeSinceLevelLoad;
+
+		var minutes = totalSeconds / 60;
+		var seconds = totalSeconds % 60;
+
+		return String.Format("{0}:{1:D2}", minutes, seconds);
 	}
 
 	public GUIStyle CurrentCountSkin() {

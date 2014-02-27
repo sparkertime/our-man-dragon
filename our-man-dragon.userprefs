@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SpawnForts.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameGUI.cs">
     <Files>
-      <File FileName="Assets/Scripts/Fort.cs" Line="70" Column="3" />
-      <File FileName="Assets/Scripts/GameGUI.cs" Line="54" Column="3" />
-      <File FileName="Assets/Scripts/Hut.cs" Line="13" Column="2" />
+      <File FileName="Assets/Scripts/GameGUI.cs" Line="84" Column="24" />
+      <File FileName="Assets/Scripts/Fort.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameGUI.cs" Line="84" Column="24" />
+      <File FileName="Assets/Scripts/Hut.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/SpawnForts.cs" Line="21" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
