@@ -10,6 +10,10 @@ public class Hut : MonoBehaviour {
 		return _all;
 	}
 
+	public static void ResetAll() {
+		_all = new List<Hut>();
+	}
+
 	public static int TotalVillagerCapacity() {
 		if(_all.Count < 1) return 0;
 

@@ -46,6 +46,7 @@ public class HutBuilding : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		theInstance = this;
+
 		spawner = new RandomSpawner(this.transform, minRange, maxRange);
 
 		stateActions = new Dictionary<BuildState, Action>{

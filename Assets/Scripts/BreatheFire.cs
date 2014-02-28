@@ -13,5 +13,9 @@ public class BreatheFire : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		fire.particleSystem.enableEmission = Input.GetButton("Fire");
+
+		if(fire.particleSystem.enableEmission) {
+			ProgressTracker.LogFireBreathed(Time.deltaTime);
+		}
 	}
 }

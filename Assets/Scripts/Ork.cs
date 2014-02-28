@@ -8,6 +8,10 @@ public class Ork : MonoBehaviour {
 	public static IEnumerable<Ork> AllOrks() {
 		return _all;
 	}
+	
+	public static void ResetAll() {
+		_all = new List<Ork>();
+	}
 
 	private Villager target;
 	private bool canAttack = true;
@@ -64,6 +68,7 @@ public class Ork : MonoBehaviour {
 
 	public void StopActivity() {
 		canAttack = false;
+		ProgressTracker.LogOrkKilled(this);
 		_all.Remove(this);
 	}
 }

@@ -2321,6 +2321,7 @@ GameObject:
   - 114: {fileID: 2048416624}
   - 114: {fileID: 2048416626}
   - 114: {fileID: 2048416627}
+  - 114: {fileID: 2048416628}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2390,6 +2391,18 @@ MonoBehaviour:
   alertSkin: {fileID: 11400000, guid: e3c26ea4ba12c4df693b6cc3fe2661c0, type: 2}
   alertInterval: .5
   alertTime: 3
+--- !u!114 &2048416628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2048416623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba0028f91df1e4ee0b1768963257084d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverScene: GameOver
 --- !u!1001 &2114709947
 Prefab:
   m_ObjectHideFlags: 0

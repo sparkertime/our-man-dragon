@@ -16,6 +16,10 @@ public class Villager : MonoBehaviour {
 		return _all;
 	}
 
+	public static void ResetAll() {
+		_all = new List<Villager>();
+	}
+
 	public float hutBuildDistance = 0.8f;
 	public float movementSpeed = 2f;
 	public event Action<Villager> OnDeath, OnArrive;
@@ -40,6 +44,7 @@ public class Villager : MonoBehaviour {
 	
 	void Start () {
 		_all.Add(this);
+		ProgressTracker.LogVillagerSpawned();
 	}
 
 	public bool IsLiving() {

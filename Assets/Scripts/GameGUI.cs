@@ -51,7 +51,7 @@ public class GameGUI : MonoBehaviour {
 
 		GUI.Label(
 			new Rect((width / 2f) - 35, 50, 80, 25),
-			String.Format("Time: {0}", CurrentPlaytime())
+			String.Format("Time: {0}", ProgressTracker.FormattedPlaytime())
 		);
 
 		GUILayout.EndArea();
@@ -76,15 +76,6 @@ public class GameGUI : MonoBehaviour {
 			currentAlertTime = 0.0f;
 		}
 
-	}
-
-	public string CurrentPlaytime() {
-		var totalSeconds = (int)Time.timeSinceLevelLoad;
-
-		var minutes = totalSeconds / 60;
-		var seconds = totalSeconds % 60;
-
-		return String.Format("{0}:{1:D2}", minutes, seconds);
 	}
 
 	public GUIStyle CurrentCountSkin() {

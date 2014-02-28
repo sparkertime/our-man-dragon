@@ -11,6 +11,10 @@ public class Fort : MonoBehaviour {
 		
 		return _all.Count * _all[0].numberInTribe;
 	}
+	
+	public static void ResetAll() {
+		_all = new List<Fort>();
+	}
 
 	public float spawnRate = 2f;
 	public int numberInTribe = 10;
