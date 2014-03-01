@@ -2322,6 +2322,7 @@ GameObject:
   - 114: {fileID: 2048416626}
   - 114: {fileID: 2048416627}
   - 114: {fileID: 2048416628}
+  - 114: {fileID: 2048416629}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2403,6 +2404,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScene: GameOver
+--- !u!114 &2048416629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2048416623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 025f3a441502f44548055c6941f399e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2114709947
 Prefab:
   m_ObjectHideFlags: 0

@@ -10,39 +10,36 @@ public class Hut : MonoBehaviour {
 		return _all;
 	}
 
+	public static Hut RandomHut() {
+		if(_all.Count == 0) return null;
+
+		return _all[UnityEngine.Random.Range(0, _all.Count)];
+	}
+
 	public static void ResetAll() {
 		_all = new List<Hut>();
 	}
 
-	public static int TotalVillagerCapacity() {
-		if(_all.Count < 1) return 0;
-
-		return _all.Count * _all[0].numberInTribe;
-	}
-
 	public float spawnRate = 3f;
-	public int numberInTribe = 5;
 	public GameObject villager;
 	public float minRange = 1f;
 	public float maxRange = 2f;
 
 	public event Action OnDeath;
-	
-	private List<GameObject> villagers;
+
 	private RandomSpawner spawner;
 	private float timeSinceLastSpawn = 0f;
 	private bool canSpawn = true;
+
+	public void SpawnVillager() {
+		spawner.Spawn(villager);
+	}
 
 	// Use this for initialization
 	void Start() {
 		_all.Add(this);
 		timeSinceLastSpawn = UnityEngine.Random.value;
-		villagers = new List<GameObject>();
 		spawner = new RandomSpawner(this.transform, minRange, maxRange);
-	}
-
-	public bool AtCapacity() {
-		return villagers.Count >= numberInTribe;
 	}
 	
 	// Update is called once per frame
@@ -53,13 +50,13 @@ public class Hut : MonoBehaviour {
 	void AttemptSpawn() {
 		timeSinceLastSpawn += Time.deltaTime;
 
-		if(!canSpawn || AtCapacity() || timeSinceLastSpawn < spawnRate) {
+		if(!canSpawn || timeSinceLastSpawn < spawnRate) {
 			return;
 		}
 
+		SpawnVillagers.AttemptSpawnVillager();
+
 		timeSinceLastSpawn = 0f;
-		
-		villagers.Add(spawner.Spawn(villager));
 	}
 
 	void StopActivity() {

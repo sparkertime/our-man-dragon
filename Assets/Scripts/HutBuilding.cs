@@ -64,7 +64,7 @@ public class HutBuilding : MonoBehaviour {
 	}
 
 	void WaitForCapacity() {
-		if(Villager.AllVillagers().Count() > villagersToBuild && Hut.AllHuts().All((h) => h.AtCapacity())) {
+		if(Villager.AllVillagers().Count() > villagersToBuild && SpawnVillagers.AtVillagerCapacity()) {
 			currentState = BuildState.LookingForLocation;
 		}
 	}

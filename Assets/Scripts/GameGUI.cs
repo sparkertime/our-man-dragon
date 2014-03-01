@@ -33,7 +33,7 @@ public class GameGUI : MonoBehaviour {
 
 		GUI.Label(
 			new Rect(5,3,100,25),
-			String.Format("Villagers: {0} / {1}", villagerCount, Hut.TotalVillagerCapacity()),
+			String.Format("Villagers: {0} / {1}", villagerCount, SpawnVillagers.TotalVillagerCapacity()),
 			CurrentCountSkin()
 		);
 
