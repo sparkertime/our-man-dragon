@@ -26,7 +26,7 @@ public class SpawnForts : MonoBehaviour {
 		timeSinceLastSpawn = Random.value;
 		spawnRate = initialFortSpawnRate;
 		spawner = new RandomSpawner(this.transform, minRange, maxRange);
-		spawner.Spawn(fort);
+		SpawnInitialFort();
 	}
 	
 	// Update is called once per frame
@@ -52,5 +52,15 @@ public class SpawnForts : MonoBehaviour {
 
 	int _timeUntilNextSpawn() {
 		return (int)(spawnRate - timeSinceLastSpawn);
+	}
+
+	void SpawnInitialFort() {
+		var newFort = spawner.Spawn(fort);
+
+		newFort.transform.position = new Vector3(
+			newFort.transform.position.x,
+			newFort.transform.position.y,
+			Mathf.Abs(newFort.transform.position.z)
+		);
 	}
 }
