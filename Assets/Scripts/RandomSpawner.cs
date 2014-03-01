@@ -1,6 +1,10 @@
 using UnityEngine;
 
 public class RandomSpawner {
+	public static Vector2 LocationNear(Vector2 destination, float radius) {
+		return new RandomSpawner(destination, radius - 0.1f, radius + 0.1f).NextLocation();
+	}
+
 	private Vector2 center;
 	private float minRange;
 	private float maxRange;

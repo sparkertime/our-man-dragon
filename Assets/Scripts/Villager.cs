@@ -7,7 +7,9 @@ using System;
 public class Villager : MonoBehaviour {
 	enum VillagerState {
 		Idle = 0,
-		Moving,
+		MovingToBuilding,
+		Building,
+		Wandering,
 		Dead
 	}
 	
@@ -22,12 +24,17 @@ public class Villager : MonoBehaviour {
 
 	public float hutBuildDistance = 0.8f;
 	public float movementSpeed = 2f;
+	public float wanderOdds = 0.333f;
+	public float wanderingSpeed = 0.4f;
+	public float wanderingRadius = 1f;
 	public event Action<Villager> OnDeath, OnArrive;
 	
 	static System.Random randomNumber = new System.Random();
 	VillagerState state = VillagerState.Idle;
 
-	private Vector3 destination;
+	private Vector3 buildDestination;
+	private Vector3 wanderDestination;
+	private int lastWanderCheck;
 
 	public static Villager RandomVillager() {
 		if(_all.Count < 1) return null;
@@ -51,8 +58,12 @@ public class Villager : MonoBehaviour {
 		return state != VillagerState.Dead;
 	}
 
-	public bool IsIdle() {
-		return state == VillagerState.Idle;
+	public bool IsBuilding() {
+		return state == VillagerState.Building;
+	}
+
+	public void Idle() {
+		state = VillagerState.Idle;
 	}
 
 	public void Kill() {
@@ -61,34 +72,76 @@ public class Villager : MonoBehaviour {
 		Destroy(this.gameObject);
 	}
 	
-	public void SetDestinationNear(Vector2 destination) {
+	public void Build(Vector2 destination) {
 		var nextLocation = new RandomSpawner(destination, hutBuildDistance - 0.1f, hutBuildDistance + 0.1f).NextLocation();
 
-		this.destination = new Vector3(nextLocation.x,
-		                               this.transform.position.y,
-		                               nextLocation.y);
+		this.buildDestination = new Vector3(nextLocation.x,
+           this.transform.position.y,
+           nextLocation.y
+		);
 
-		state = VillagerState.Moving;
+		state = VillagerState.MovingToBuilding;
+	}
+
+	void CheckForWandering() {
+		var second = (int)Time.timeSinceLevelLoad;
+
+		if(second != lastWanderCheck && UnityEngine.Random.value < wanderOdds) {
+			var nextLocation = RandomSpawner.LocationNear(
+				new Vector2(this.transform.position.x,this.transform.position.z),
+				wanderingRadius
+			);
+
+			wanderDestination = new Vector3(nextLocation.x,
+	            this.transform.position.y,
+	            nextLocation.y
+			);
+
+			this.state = VillagerState.Wandering;
+		}
+
+		lastWanderCheck = second;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(state == VillagerState.Moving) {
-			MoveTowardsDestination();
+		if(state == VillagerState.MovingToBuilding) {
+			MoveTowardsBuilding();
+		}
+		else if (state == VillagerState.Wandering) {
+			MoveWandering();
+		}
+		else if(state == VillagerState.Idle) {
+			CheckForWandering();
 		}
 	}
 
-	void MoveTowardsDestination() {
-		if(Vector3.Distance(this.transform.position, destination) < 0.1f) {
-			state = VillagerState.Idle;
+	void MoveTowardsBuilding() {
+		if(Vector3.Distance(this.transform.position, buildDestination) < 0.1f) {
+			state = VillagerState.Building;
 
 			if(OnArrive != null) OnArrive(this);
+
+			OnArrive = null;
 
 			return;
 		}
 
-		this.transform.LookAt(destination);
+		this.transform.LookAt(buildDestination);
 		this.transform.position += this.transform.forward * Time.deltaTime * movementSpeed;
+	}
+	
+	void MoveWandering() {
+		if(Vector3.Distance(this.transform.position, wanderDestination) < 0.1f) {
+			state = VillagerState.Idle;
+			
+			return;
+		}
+		
+		this.transform.LookAt(wanderDestination);
+		this.transform.position += this.transform.forward * Time.deltaTime * wanderingSpeed;
+
+		lastWanderCheck = (int)Time.timeSinceLevelLoad;
 	}
 
 	void StopActivity() {

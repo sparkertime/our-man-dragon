@@ -89,7 +89,7 @@ public class HutBuilding : MonoBehaviour {
 
 			villager.OnDeath += RemoveDeadBuilder;
 			villager.OnArrive += CheckForBuildingStart;
-			villager.SetDestinationNear(nextLocation);
+			villager.Build(nextLocation);
 			builders.Add(villager);
 		}
 	}
@@ -105,7 +105,7 @@ public class HutBuilding : MonoBehaviour {
 	}
 
 	void CheckForBuildingStart(Villager _) {
-		if(builders.All(v => v.IsIdle())) {
+		if(builders.All(v => v.IsBuilding())) {
 			hutBuildingProgress = 0;
 			currentState = BuildState.BuildingHut;
 		}
@@ -115,6 +115,11 @@ public class HutBuilding : MonoBehaviour {
 		hutBuildingProgress += Time.fixedDeltaTime;
 		if(hutBuildingProgress >= buildTimeForHut) {
 			SpawnHut(nextLocation);
+
+			foreach(var villager in builders) {
+				villager.Idle();
+			}
+
 			builders.Clear();
 			currentState = BuildState.SpawningVillagers;
 		} else {
