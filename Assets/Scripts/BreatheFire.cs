@@ -7,14 +7,14 @@ public class BreatheFire : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		fire.particleSystem.enableEmission = false;
+		fire.GetComponent<ParticleSystem>().enableEmission = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		fire.particleSystem.enableEmission = Input.GetButton("Fire");
+		fire.GetComponent<ParticleSystem>().enableEmission = Input.GetButton("Fire");
 
-		if(fire.particleSystem.enableEmission) {
+		if(fire.GetComponent<ParticleSystem>().enableEmission) {
 			ProgressTracker.LogFireBreathed(Time.deltaTime);
 		}
 	}

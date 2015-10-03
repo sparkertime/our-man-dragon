@@ -15,8 +15,8 @@ public class Burnable : MonoBehaviour {
 	private float timeBurning = 0f;
 
 	void Start() {
-		this.fire.particleSystem.enableEmission = false;
-		this.smoulder.particleSystem.enableEmission = false;
+		this.fire.GetComponent<ParticleSystem>().enableEmission = false;
+		this.smoulder.GetComponent<ParticleSystem>().enableEmission = false;
 	}
 
 	void OnParticleCollision(GameObject collision) {
@@ -33,15 +33,15 @@ public class Burnable : MonoBehaviour {
 	void Burn() {
 		timeBurning += Time.deltaTime;
 		
-		this.fire.particleSystem.enableEmission = (timeBurning < timeUntilSmoulder);
-		this.smoulder.particleSystem.enableEmission = (timeBurning > timeUntilSmoulder);
+		this.fire.GetComponent<ParticleSystem>().enableEmission = (timeBurning < timeUntilSmoulder);
+		this.smoulder.GetComponent<ParticleSystem>().enableEmission = (timeBurning > timeUntilSmoulder);
 
 		if(timeBurning > timeUntilDeath) {
 			destroyOnBurn.SendMessage("Kill", SendMessageOptions.DontRequireReceiver);
 			Destroy(destroyOnBurn);
 		} else if(timeBurning > timeUntilSmoulder) {
-			this.fire.particleSystem.enableEmission = false;
-			this.smoulder.particleSystem.enableEmission = true;
+			this.fire.GetComponent<ParticleSystem>().enableEmission = false;
+			this.smoulder.GetComponent<ParticleSystem>().enableEmission = true;
 			MakeScorched();
 		}
 	}
@@ -53,7 +53,7 @@ public class Burnable : MonoBehaviour {
 		}
 
 		foreach(var obj in objectsToScorch) {
-			obj.renderer.materials = Enumerable.Repeat<Material>(scorchColor, obj.renderer.materials.Count()).ToArray();
+			obj.GetComponent<Renderer>().materials = Enumerable.Repeat<Material>(scorchColor, obj.GetComponent<Renderer>().materials.Count()).ToArray();
 		}
 		_isScorched = true;
 	}
